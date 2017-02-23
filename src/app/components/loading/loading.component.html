@@ -1,0 +1,39 @@
+<div class="outerDiv pinkBg home" *ngIf="!showDropdown">
+    Loading ...
+</div>
+
+<div class="outerDiv pinkBg" *ngIf="showDropdown">
+    <div class="innerDiv card">
+        <h5 class="text-center">Select Hotel To Login</h5>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <label for="spaceProvider" class="">Select Property</label>
+                <select [(ngModel)]="selectedSpaceProvider" name="selectedSpaceProvider" required="" (change)="spaceProviderChange(selectedSpaceProvider)">
+                    <option *ngFor="let sp of spaceProviders" [ngValue]="sp" selected>{{sp.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <label for="space" class="">Select Hotel</label>
+                <select [(ngModel)]="selectedSpace" name="selectedSpace" required="">
+                    <option *ngFor="let space of spaces" [ngValue]="space" selected>{{space.name}}</option>
+                </select>
+            </div>
+            <div class="row col-lg-12 col-md-12 col-xs-12" style="margin-top: 2%">
+                Address:
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    City: {{getCity(selectedSpace)}}</div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    Address Line : {{getAddressLine1(selectedSpace)}}
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    Region: {{getRegion(selectedSpace)}}
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <button class="waves-effect waves-light btn" (click)="goToHotel(selectedSpace)" style="float: right;">Go</button>
+            </div>
+        </div>
+    </div>
+</div>
